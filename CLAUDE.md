@@ -4,45 +4,50 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Static landing page for **Beyond the Call** — a 12-week fitness, nutrition, and mindset program for first responders, by Kaylee Sawatsky (Paramedic, CPT & Nutrition Coach).
+Static landing page recreation of **Beyond the Call** — a 12-week fitness, nutrition, and mindset program for first responders, by Kaylee Sawatsky (Paramedic, CPT & Nutrition Coach). Original: beyondthecallwebsite.netlify.app
 
 ## Stack
 
-Plain HTML/CSS/JS — no build step, no framework, no dependencies.
+Single-file HTML/CSS/JS — no build step, no framework, no dependencies. All CSS is inline in `<style>` in `index.html`. All JS is inline in `<script>` at the bottom.
 
-- `index.html` — single-page layout with anchor-linked sections
-- `style.css` — all styles (CSS custom properties for the design system)
-- `script.js` — navbar scroll shadow, hamburger menu, FAQ accordion
-- `images/` — put `kaylee.jpg` here (hero image, falls back gracefully if missing)
+- `index.html` — entire site (CSS + HTML + JS)
+- `images/photo1.jpg` through `images/photo11.jpg` — extracted from original site, used in order through the page
+- `style.css` / `script.js` — legacy files from initial build, not used (index.html is self-contained)
 
 ## Run
 
-Open `index.html` directly in a browser, or use any static server:
+Open `index.html` directly in a browser. No server needed.
 
 ```bash
 npx serve .
-# or
-python -m http.server 8080
 ```
 
-## Design System
-
-CSS variables are defined in `:root` in `style.css`:
+## Design System (all in `:root` in index.html)
 
 | Token | Value | Use |
 |-------|-------|-----|
-| `--navy` | `#0d1b2a` | Hero bg, footer, headings |
-| `--accent` | `#c8954a` | Buttons, highlights, CTA banner |
-| `--off-white` | `#f8f6f2` | Page background |
+| `--black` | `#11181c` | Page background |
+| `--dark` | `#1a2429` | About, FAQ, footer sections |
+| `--mid` | `#232f35` | Program, Pricing sections |
+| `--gold` | `#c19a6b` | All accents, buttons, labels |
+| `--cream` | `#f1ece2` | Body text |
 
-Typography: **Inter** (body) + **Playfair Display** (headings/taglines) via Google Fonts.
+Fonts: **Cormorant Garamond** (headings, logo, sig) + **Inter** (body) via Google Fonts.
 
-## Page Sections
+## Page Sections (in order)
 
-`#hero` → `#about` → `#program` → `#pricing` → `#faq` → `.cta-banner` → `footer`
+`nav` → `#hero` → `.marquee-bar` → `#about` → `#for` → `#program` → `#weeks` → `#photos` → `#included` → `#pricing` → `#faq` → `#cta` → `footer`
 
-All nav links use anchor IDs. The waitlist CTA links to an external Mailchimp subscribe URL.
+## Key Details
+
+- Waitlist URL: `https://outlook.us7.list-manage.com/subscribe/post?u=2546188df96b7b6c5d5b26305&id=30d824b3aa&f_id=00be31e0f0`
+- Instagram: `https://www.instagram.com/kaysawatskyfit`
+- Contact email: `beyondthecallco@gmail.com`
+- Pricing: $797 founding (first 20 spots) / $997 regular
+- Scroll reveal: `.reveal` class + IntersectionObserver adds `.visible`
+- FAQ uses native `<details>`/`<summary>` elements (no JS needed)
+- Mobile nav: `nav.mobile-open` class toggled by hamburger button
 
 ## Deployment
 
-Netlify drag-and-drop or GitHub Pages. No build command needed.
+Netlify drag-and-drop the folder or GitHub Pages. No build command.

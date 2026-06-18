@@ -4,237 +4,1219 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beyond the Call | Fitness, Nutrition & Mindset for First Responders</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <meta name="description" content="A 12-week fitness, nutrition, and mindset program built for first responders. By Kaylee Sawatsky — paramedic, certified trainer, and someone who's lived it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #11181c;
+      --dark:     #1a2429;
+      --mid:      #232f35;
+      --gold:     #c19a6b;
+      --gold-lt:  #d8b88a;
+      --sage:     #94a89a;
+      --cream:    #f1ece2;
+      --cream-dk: #e6dfd2;
+      --white:    #ffffff;
+      --nav-h:    72px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      background: rgba(17, 24, 28, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(193, 154, 107, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    .nav-cta {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.55rem 1.4rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--gold-lt); }
+
+    .hamburger { display: none; cursor: pointer; background: none; border: none; flex-direction: column; gap: 5px; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); transition: all 0.3s; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: var(--nav-h);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 5vw 6rem 8vw;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 5.5vw, 5.5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--cream-dk);
+      opacity: 0.85;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-block;
+      color: var(--cream);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(241, 236, 226, 0.35);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-secondary:hover { color: var(--gold); border-color: var(--gold); }
+
+    .hero-img {
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+      min-height: 100vh;
+    }
+
+    .hero-img img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 15% 20%;
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-bar {
+      background: var(--gold);
+      padding: 0.9rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-inner span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin: 0 2.5rem;
+    }
+
+    .marquee-inner span::before {
+      content: '✦';
+      margin-right: 2.5rem;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 7rem 5vw; }
+
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* ─── ABOUT / STORY ─── */
+    #about { background: var(--dark); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+
+    .about-img-main {
+      grid-column: 1 / 3;
+      height: clamp(260px, 28vw, 420px);
+      overflow: hidden;
+      background: var(--mid);
+    }
+
+    .about-img-main img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+
+    .about-img-sm {
+      height: clamp(160px, 18vw, 280px);
+      overflow: hidden;
+      background: var(--mid);
+    }
+
+    .about-img-sm img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+    .about-text p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      color: var(--cream-dk);
+      margin-bottom: 1.3rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-text strong { color: var(--gold); font-weight: 500; }
+
+    .about-sig {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(193, 154, 107, 0.2);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ─── WHO IT'S FOR ─── */
+    #for { background: var(--black); }
+
+    .for-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .for-card {
+      background: var(--dark);
+      padding: 2rem 1.75rem;
+      border-left: 3px solid var(--gold);
+      transition: transform 0.25s;
+    }
+
+    .for-card:hover { transform: translateY(-4px); }
+
+    .for-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .for-card p {
+      font-size: 0.88rem;
+      color: var(--cream-dk);
+      opacity: 0.8;
+      line-height: 1.7;
+    }
+
+    /* ─── PROGRAM ─── */
+    #program { background: var(--mid); }
+
+    .program-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-bottom: 5rem;
+    }
+
+    .program-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .pillar {
+      background: var(--dark);
+      padding: 2.25rem 1.75rem;
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .pillar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      opacity: 0.4;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .pillar h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .pillar p {
+      font-size: 0.85rem;
+      color: var(--cream-dk);
+      opacity: 0.8;
+      line-height: 1.7;
+    }
+
+    /* ─── 12 WEEKS ─── */
+    #weeks { background: var(--dark); }
+
+    .weeks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .week-block {
+      background: var(--mid);
+      padding: 1.75rem 1.5rem;
+      border-top: 2px solid transparent;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .week-block:hover { border-color: var(--gold); transform: translateY(-3px); }
+
+    .week-num {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .week-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .week-desc {
+      font-size: 0.82rem;
+      color: var(--cream-dk);
+      opacity: 0.75;
+      line-height: 1.65;
+    }
+
+    /* ─── PHOTO STRIP ─── */
+    #photos { padding: 0; }
+
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      height: clamp(240px, 28vw, 480px);
+    }
+
+    .strip-photo {
+      overflow: hidden;
+      background: var(--mid);
+    }
+
+    .strip-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.5s ease;
+    }
+
+    .strip-photo:hover img { transform: scale(1.05); }
+
+    /* ─── WHAT'S INCLUDED ─── */
+    #included { background: var(--black); }
+
+    .included-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .included-img {
+      height: clamp(360px, 40vw, 660px);
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .included-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 65% 15%;
+    }
+
+    .included-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .included-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .included-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: rgba(193, 154, 107, 0.1);
+      border: 1px solid rgba(193, 154, 107, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
+
+    .included-item h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .included-item p {
+      font-size: 0.85rem;
+      color: var(--cream-dk);
+      opacity: 0.8;
+      line-height: 1.65;
+    }
+
+    /* ─── PRICING ─── */
+    #pricing { background: var(--mid); }
+
+    .pricing-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 820px;
+      margin: 3rem auto 0;
+    }
+
+    .price-card {
+      background: var(--dark);
+      padding: 2.75rem 2.25rem;
+      border: 1px solid rgba(193, 154, 107, 0.15);
+      position: relative;
+      transition: transform 0.25s;
+    }
+
+    .price-card:hover { transform: translateY(-4px); }
+
+    .price-card.featured {
+      border-color: var(--gold);
+      background: var(--black);
+    }
+
+    .price-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      white-space: nowrap;
+    }
+
+    .price-name {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .price-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .price-amount sup {
+      font-size: 1.5rem;
+      vertical-align: top;
+      margin-top: 0.6rem;
+      display: inline-block;
+    }
+
+    .price-note {
+      font-size: 0.8rem;
+      color: var(--sage);
+      margin-bottom: 2rem;
+    }
+
+    .price-divider {
+      height: 1px;
+      background: rgba(193, 154, 107, 0.15);
+      margin-bottom: 1.75rem;
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .price-features li {
+      font-size: 0.88rem;
+      color: var(--cream-dk);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+
+    .price-features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    .pricing-note {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.82rem;
+      color: var(--sage);
+      opacity: 0.8;
+    }
+
+    /* ─── FAQ ─── */
+    #faq { background: var(--dark); }
+
+    .faq-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    details {
+      border-bottom: 1px solid rgba(193, 154, 107, 0.15);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    details:last-child { margin-bottom: 0; }
+
+    summary {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--cream);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.25rem 0;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: '+';
+      color: var(--gold);
+      font-size: 1.2rem;
+      font-weight: 300;
+      flex-shrink: 0;
+      transition: transform 0.25s;
+    }
+
+    details[open] summary::after { transform: rotate(45deg); }
+
+    details p {
+      margin-top: 0.75rem;
+      font-size: 0.86rem;
+      color: var(--cream-dk);
+      opacity: 0.8;
+      line-height: 1.75;
+    }
+
+    /* ─── CTA SECTION ─── */
+    #cta {
+      background: var(--black);
+      padding: 8rem 5vw;
+      text-align: center;
+    }
+
+    #cta .section-title { margin: 0 auto 1.25rem; max-width: 680px; }
+
+    #cta > .section-inner > p {
+      font-size: 0.97rem;
+      color: var(--cream-dk);
+      opacity: 0.8;
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 1.25rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(193, 154, 107, 0.12);
+      padding: 3rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    .footer-links a:hover { opacity: 1; color: var(--gold); }
+
+    .footer-right {
+      font-size: 0.76rem;
+      color: var(--cream);
+      opacity: 0.35;
+    }
+
+    /* ─── REVEAL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-img { min-height: 55vw; }
+      .hero-content { padding: 5rem 6vw; }
+      .about-grid,
+      .program-intro,
+      .included-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-images { order: -1; }
+      .weeks-grid { grid-template-columns: repeat(2, 1fr); }
+      .photo-strip { grid-template-columns: repeat(3, 1fr); }
+      .photo-strip .strip-photo:nth-child(n+4) { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 60px; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .for-grid { grid-template-columns: 1fr; }
+      .program-pillars { grid-template-columns: 1fr; }
+      .weeks-grid { grid-template-columns: 1fr; }
+      .pricing-wrap { grid-template-columns: 1fr; max-width: 400px; }
+      .faq-cols { grid-template-columns: 1fr; }
+      .photo-strip { grid-template-columns: repeat(2, 1fr); height: auto; }
+      .strip-photo { height: 180px; }
+      .photo-strip .strip-photo:nth-child(n+3) { display: none; }
+      footer { flex-direction: column; text-align: center; }
+    }
+
+    nav.mobile-open .nav-links {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      background: rgba(17,24,28,0.97);
+      padding: 1.5rem 5vw 2rem;
+      border-bottom: 1px solid rgba(193,154,107,0.15);
+      gap: 1.25rem;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ─── NAV ─── -->
   <nav id="navbar">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo">Beyond the Call</a>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#program">The Program</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-      <a href="https://outlook.us7.list-manage.com/subscribe" target="_blank" class="btn btn-nav">Join the Waitlist</a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#about">About</a>
-      <a href="#program">The Program</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a href="https://outlook.us7.list-manage.com/subscribe" target="_blank" class="btn btn-primary">Join the Waitlist</a>
-    </div>
+    <a class="nav-logo" href="#hero">Beyond the Call</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#program">The Program</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="nav-cta" href="https://outlook.us7.list-manage.com/subscribe/post?u=2546188df96b7b6c5d5b26305&id=30d824b3aa&f_id=00be31e0f0">Join the Waitlist</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <!-- HERO -->
-  <section id="hero" class="hero">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <p class="hero-eyebrow">A 12-Week Transformation</p>
-        <h1>Beyond the Call</h1>
-        <p class="hero-tagline">For Those Who Answer It.</p>
-        <p class="hero-desc">A 12-week fitness, nutrition, and mindset program. Built for first responders, by a first responder.</p>
-        <p class="hero-creator">Kaylee Sawatsky &middot; Paramedic, Certified Personal Trainer &amp; Nutrition Coach</p>
-        <div class="hero-ctas">
-          <a href="https://outlook.us7.list-manage.com/subscribe" target="_blank" class="btn btn-primary">Join the Waitlist</a>
-          <a href="#about" class="btn btn-outline">My Story</a>
-        </div>
-      </div>
-      <div class="hero-image">
-        <div class="hero-img-wrap">
-          <img src="images/kaylee.jpg" alt="Kaylee Sawatsky" onerror="this.parentElement.classList.add('no-img')" />
-        </div>
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Kaylee Sawatsky · Paramedic, Certified Personal Trainer &amp; Nutrition Coach</p>
+      <h1 class="hero-title"><em>Beyond<br>the Call</em></h1>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.2rem,2vw,1.6rem); font-style:italic; color:var(--cream-dk); margin-bottom:1.25rem; letter-spacing:0.02em;">For Those Who Answer It.</p>
+      <p class="hero-sub">A 12-week fitness, nutrition, and mindset program. Built for first responders, by a first responder.</p>
+      <div class="hero-btns">
+        <a href="https://outlook.us7.list-manage.com/subscribe/post?u=2546188df96b7b6c5d5b26305&id=30d824b3aa&f_id=00be31e0f0" class="btn-primary">Join the Waitlist</a>
+        <a href="#about" class="btn-secondary">My Story</a>
       </div>
     </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
+    <div class="hero-img">
+      <img src="images/photo1.jpg" alt="Kaylee Sawatsky" style="width:100%;height:100%;object-fit:cover;object-position:80% center;" />
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section about">
-    <div class="container">
-      <div class="section-label">About</div>
+  <!-- ─── MARQUEE ─── -->
+  <div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-inner">
+      <span>Fitness</span><span>Nutrition</span><span>Mindset</span><span>12 Weeks</span>
+      <span>For Those Who Answer It</span><span>Built by a First Responder</span><span>Career Longevity</span>
+      <span>Fitness</span><span>Nutrition</span><span>Mindset</span><span>12 Weeks</span>
+      <span>For Those Who Answer It</span><span>Built by a First Responder</span><span>Career Longevity</span>
+    </div>
+  </div>
+
+  <!-- ─── ABOUT / STORY ─── -->
+  <section id="about">
+    <div class="section-inner">
       <div class="about-grid">
-        <div class="about-text">
-          <h2>Built by someone<br /><em>who lives it.</em></h2>
-          <p>I'm Kaylee Sawatsky — a paramedic who has worked shifts that leave you physically and mentally drained. I know what it's like to come home exhausted and wonder how you're supposed to take care of yourself when your job demands everything you have.</p>
-          <p>After years of struggling to find a program that actually fit my life as a first responder, I built one. Beyond the Call isn't a generic fitness plan — it's designed around the realities of shift work, high-stress environments, and the unique physical demands of emergency services.</p>
-          <p>I'm also a Certified Personal Trainer and Nutrition Coach, and I've combined everything I know to create a program that meets you where you are — and takes you further than you thought possible.</p>
+        <div class="about-images">
+          <div class="about-img-main"><img src="images/photo2.jpg" style="width:100%;height:100%;object-fit:cover;object-position:50% 20%;" alt="Kaylee in paramedic uniform" /></div>
+          <div class="about-img-sm"><img src="images/photo3.jpg" alt="Kaylee in gym" style="width:100%;height:100%;object-fit:cover;object-position:50% 18%;" /></div>
+          <div class="about-img-sm"><img src="images/photo4.jpg" alt="Kaylee in gym" style="width:100%;height:100%;object-fit:cover;" /></div>
         </div>
-        <div class="about-stats">
-          <div class="stat">
-            <span class="stat-num">12</span>
-            <span class="stat-label">Weeks</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">3</span>
-            <span class="stat-label">Pillars</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">1</span>
-            <span class="stat-label">Community</span>
-          </div>
+        <div class="about-text reveal">
+          <p class="section-label">My Story</p>
+          <h2 class="section-title" style="font-size: clamp(2rem,3.2vw,3rem); margin-bottom: 1.25rem;">Nobody prepared<br>me for <em>this job</em></h2>
+          <div class="divider"></div>
+          <p>I started as a paramedic at 19, straight out of high school. Nobody prepared me for what was actually coming.</p>
+          <p>Working rural, I barely ate. When I did, it was whatever was available — and it wasn't good. I lost a significant amount of weight without noticing until someone else pointed it out. I didn't even clock it happening.</p>
+          <p>When I moved to the city, it was the opposite. Endless food options, but no understanding of what I was doing with any of them. I wasn't meal prepping. I wasn't prepared. I had no real sense of how much what I ate affected me — my energy, my recovery, the way I felt on the job. And on top of that, I was struggling. The weight came on, and everything that came with it — the kind of thing a lot of us in this career quietly carry and don't talk about.</p>
+          <p>The turning point was watching good paramedics — passionate, skilled people — leave this career earlier than they should have. Broken down in ways that didn't have to happen. I knew I was heading the same direction.</p>
+          <p>So I got my personal training certification, then my nutrition coaching certification. I built a system that actually worked around my life as a paramedic — not some ideal version of it.</p>
+          <p>This program is the result of that. <strong>Built for first responders, by a first responder.</strong> Everything I wish I had on day one.</p>
+          <div class="about-sig">— Kaylee Sawatsky, PCP &nbsp;·&nbsp; Certified Personal Trainer &amp; Nutrition Coach</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROGRAM -->
-  <section id="program" class="section program">
-    <div class="container">
-      <div class="section-label">The Program</div>
-      <h2>Three pillars.<br /><em>One complete system.</em></h2>
-      <p class="section-sub">Everything a first responder needs to perform at their best — on shift and off.</p>
-      <div class="pillars">
-        <div class="pillar">
-          <div class="pillar-icon">&#9889;</div>
+  <!-- ─── WHO IT'S FOR ─── -->
+  <section id="for">
+    <div class="section-inner">
+      <div class="reveal">
+        <p class="section-label">Who This Is For</p>
+        <h2 class="section-title">This was built for <em>you</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="for-grid">
+        <div class="for-card reveal">
+          <h3>You're brand new to the job</h3>
+          <p>You want to build the habits now, before the job shapes them for you. Start strong, stay strong.</p>
+        </div>
+        <div class="for-card reveal">
+          <h3>You've been doing this for years</h3>
+          <p>The burnout is real. The weight has crept up. You know something needs to change and you're finally ready to do something about it.</p>
+        </div>
+        <div class="for-card reveal">
+          <h3>You love the job — but it's costing you</h3>
+          <p>Shift work, stress eating, running on nothing. You're still showing up, but you can feel yourself running on empty.</p>
+        </div>
+        <div class="for-card reveal">
+          <h3>You've tried other programs</h3>
+          <p>Generic programs weren't built for rotating shifts, critical incident stress, or 12-hour calls. This one was.</p>
+        </div>
+        <div class="for-card reveal">
+          <h3>Your confidence has taken a hit</h3>
+          <p>Imposter syndrome, comparison, feeling like you're falling behind. We address the mental side of this too — not as an afterthought.</p>
+        </div>
+        <div class="for-card reveal">
+          <h3>You want to make it to retirement</h3>
+          <p>You didn't get into this career to leave it broken. This is about building a body and a mind that last the whole way through.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROGRAM / PILLARS ─── -->
+  <section id="program">
+    <div class="section-inner">
+      <div class="program-intro">
+        <div class="reveal">
+          <p class="section-label">The Program</p>
+          <h2 class="section-title">12 weeks. <em>Three pillars.<br>One career.</em></h2>
+          <div class="divider"></div>
+          <p style="font-size:0.95rem; color: var(--cream-dk); opacity:0.8; line-height:1.85; margin-bottom: 1.2rem;">Beyond the Call isn't a generic fitness plan dropped into your lap. It's a full system built around the reality of first responder life — shift work, stress eating, mental load, and the career longevity that matters most.</p>
+          <p style="font-size:0.95rem; color: var(--cream-dk); opacity:0.8; line-height:1.85;">Every week builds on the last. You finish 12 weeks with a system that moves with your schedule — not against it.</p>
+        </div>
+        <div>
+          <div style="height:400px; overflow:hidden; background:var(--black);">
+            <img src="images/photo5.jpg" alt="Kaylee training" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+          </div>
+        </div>
+      </div>
+
+      <div class="program-pillars">
+        <div class="pillar reveal">
+          <div class="pillar-num">01</div>
           <h3>Fitness</h3>
-          <p>Progressive strength and conditioning workouts designed around your schedule. Whether you work days, nights, or rotating shifts — you'll have a plan that adapts to you.</p>
-          <ul>
-            <li>3–5 workouts per week</li>
-            <li>Home or gym options</li>
-            <li>Built for shift workers</li>
-            <li>Progressive overload built in</li>
-          </ul>
+          <p>Programming designed around shift schedules. Strength, conditioning, and recovery built for a body that works physically demanding hours.</p>
         </div>
-        <div class="pillar">
-          <div class="pillar-icon">&#127807;</div>
+        <div class="pillar reveal">
+          <div class="pillar-num">02</div>
           <h3>Nutrition</h3>
-          <p>Practical, no-nonsense nutrition guidance that actually works on a 12-hour shift. No meal prep marathons, no impossible eating windows — real food for real life.</p>
-          <ul>
-            <li>Custom macro targets</li>
-            <li>Shift-work meal strategies</li>
-            <li>Easy high-protein recipes</li>
-            <li>Fueling for performance</li>
-          </ul>
+          <p>Real food strategies for overnight shifts, stress eating, gas station runs, and no-prep days. No diet culture, no nonsense.</p>
         </div>
-        <div class="pillar">
-          <div class="pillar-icon">&#129504;</div>
+        <div class="pillar reveal">
+          <div class="pillar-num">03</div>
           <h3>Mindset</h3>
-          <p>First responders face unique mental health challenges. This program includes tools for stress management, recovery, and building a sustainable relationship with your health.</p>
-          <ul>
-            <li>Stress &amp; recovery protocols</li>
-            <li>Sleep optimization</li>
-            <li>Mental resilience strategies</li>
-            <li>Community &amp; accountability</li>
+          <p>Confidence, imposter syndrome, identity as a first responder, and building a relationship with yourself that lasts past the job.</p>
+          <p style="font-size:0.72rem; opacity:0.5; margin-top:0.75rem; line-height:1.5;">This is performance and mindset coaching — not therapy or mental health treatment. If you are struggling, please reach out to a qualified professional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 12 WEEK BREAKDOWN ─── -->
+  <section id="weeks">
+    <div class="section-inner">
+      <div class="reveal">
+        <p class="section-label">Week by Week</p>
+        <h2 class="section-title">What the <em>12 weeks</em> look like</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="weeks-grid">
+        <div class="week-block reveal">
+          <p class="week-num">Weeks 1–2 · Foundation</p>
+          <h3 class="week-title">Why It Matters</h3>
+          <p class="week-desc"><strong style="color:var(--gold); font-weight:500;">Fitness:</strong> Baseline assessment and movement patterns. <strong style="color:var(--gold); font-weight:500;">Nutrition (Modules 1–3):</strong> Why nutrition matters for first responders, macros made simple, the First Responder Plate. <strong style="color:var(--gold); font-weight:500;">Mindset:</strong> Understanding your "why" and what you want this career to look like.</p>
+        </div>
+        <div class="week-block reveal">
+          <p class="week-num">Weeks 3–4 · Build</p>
+          <h3 class="week-title">Shift Performance</h3>
+          <p class="week-desc"><strong style="color:var(--gold); font-weight:500;">Fitness:</strong> Strength training fundamentals, compound movements. <strong style="color:var(--gold); font-weight:500;">Nutrition (Modules 4–6):</strong> Eating on shift, night shift nutrition, meal prep for busy people. <strong style="color:var(--gold); font-weight:500;">Mindset:</strong> Building non-negotiables, consistency over perfection.</p>
+        </div>
+        <div class="week-block reveal">
+          <p class="week-num">Weeks 5–6 · Push</p>
+          <h3 class="week-title">Recovery &amp; Performance</h3>
+          <p class="week-desc"><strong style="color:var(--gold); font-weight:500;">Fitness:</strong> Progressive conditioning and recovery protocols. <strong style="color:var(--gold); font-weight:500;">Nutrition (Modules 7–9):</strong> Hydration, reading labels, recovery nutrition. <strong style="color:var(--gold); font-weight:500;">Mindset:</strong> Stress awareness and managing the physical load of the job.</p>
+        </div>
+        <div class="week-block reveal">
+          <p class="week-num">Weeks 7–8 · Beyond</p>
+          <h3 class="week-title">Resilience</h3>
+          <p class="week-desc"><strong style="color:var(--gold); font-weight:500;">Fitness:</strong> Recovery programming, listening to your body. <strong style="color:var(--gold); font-weight:500;">Nutrition (Modules 10–12):</strong> Stress eating, supplements, long-term sustainability. <strong style="color:var(--gold); font-weight:500;">Mindset:</strong> Understanding emotional eating and burnout patterns.</p>
+        </div>
+        <div class="week-block reveal">
+          <p class="week-num">Weeks 9–10 · Confidence</p>
+          <h3 class="week-title">Identity &amp; Mindset</h3>
+          <p class="week-desc"><strong style="color:var(--gold); font-weight:500;">Fitness:</strong> Progressive strength and conditioning. <strong style="color:var(--gold); font-weight:500;">Nutrition:</strong> Reinforcing sustainable habits. <strong style="color:var(--gold); font-weight:500;">Mindset:</strong> Imposter syndrome, confidence, showing up for yourself the same way you show up on a call.</p>
+        </div>
+        <div class="week-block reveal">
+          <p class="week-num">Weeks 11–12 · Sustain</p>
+          <h3 class="week-title">Career Longevity</h3>
+          <p class="week-desc"><strong style="color:var(--gold); font-weight:500;">Fitness:</strong> Sustainable training habits and maintenance systems. <strong style="color:var(--gold); font-weight:500;">Nutrition:</strong> Long-term framework review. <strong style="color:var(--gold); font-weight:500;">Mindset:</strong> Building a career and life that you can sustain — not just survive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PHOTO STRIP ─── -->
+  <div id="photos">
+    <div class="photo-strip">
+      <div class="strip-photo"><img src="images/photo6.jpg" alt="Kaylee Sawatsky" style="width:100%;height:100%;object-fit:cover;object-position:center top;" /></div>
+      <div class="strip-photo"><img src="images/photo7.jpg" alt="Kaylee Sawatsky" style="width:100%;height:100%;object-fit:cover;object-position:center top;" /></div>
+      <div class="strip-photo"><img src="images/photo8.jpg" alt="Kaylee Sawatsky" style="width:100%;height:100%;object-fit:cover;object-position:15% center;" /></div>
+      <div class="strip-photo"><img src="images/photo9.jpg" alt="Kaylee Sawatsky" style="width:100%;height:100%;object-fit:cover;object-position:center top;" /></div>
+      <div class="strip-photo"><img src="images/photo10.jpg" alt="Kaylee Sawatsky" style="width:100%;height:100%;object-fit:cover;object-position:center top;" /></div>
+    </div>
+  </div>
+
+  <!-- ─── WHAT'S INCLUDED ─── -->
+  <section id="included">
+    <div class="section-inner">
+      <div class="included-grid">
+        <div class="included-img"><img src="images/photo11.jpg" alt="Kaylee Sawatsky paramedic" style="width:100%;height:100%;object-fit:cover;object-position:30% center;" /></div>
+        <div class="reveal">
+          <p class="section-label">What's Included</p>
+          <h2 class="section-title" style="font-size: clamp(2rem,3vw,3rem);">Everything you need.<br><em>Nothing you don't.</em></h2>
+          <div class="divider"></div>
+          <div class="included-list">
+            <div class="included-item">
+              <div class="included-icon">✦</div>
+              <div>
+                <h4>12 Weeks of Structured Programming</h4>
+                <p>Workouts designed around rotating shifts — adaptable to your schedule, not the other way around.</p>
+              </div>
+            </div>
+            <div class="included-item">
+              <div class="included-icon">✦</div>
+              <div>
+                <h4>Complete Nutrition Framework</h4>
+                <p>A 12-module nutrition guide covering shift-work fueling, stress eating, meal prep, and building habits that actually stick.</p>
+              </div>
+            </div>
+            <div class="included-item">
+              <div class="included-icon">✦</div>
+              <div>
+                <h4>Mindset Modules</h4>
+                <p>Weekly content addressing the mental side of first responder life — confidence, imposter syndrome, identity, and resilience. <em style="font-size:0.8rem; opacity:0.7;">Note: this is performance and mindset coaching, not therapy or mental health treatment.</em></p>
+              </div>
+            </div>
+            <div class="included-item">
+              <div class="included-icon">✦</div>
+              <div>
+                <h4>Private First Responder Community</h4>
+                <p>A space for first responders only. People who get it, because they live it too.</p>
+              </div>
+            </div>
+            <div class="included-item">
+              <div class="included-icon">✦</div>
+              <div>
+                <h4>Weekly Support</h4>
+                <p>Community check-ins, accountability, and the ability to ask questions — from someone who is both an active paramedic and a certified trainer.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRICING ─── -->
+  <section id="pricing">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;">
+        <p class="section-label">Investment</p>
+        <h2 class="section-title">Simple, <em>honest</em> pricing</h2>
+        <div class="divider" style="margin:0 auto 1.5rem;"></div>
+        <p style="font-size:0.95rem; color:var(--cream-dk); opacity:0.8; max-width:480px; margin:0 auto;">One payment — no subscriptions, no hidden fees. All 12 weeks, everything included. Founding member pricing is available for the first 20 spots at launch.</p>
+      </div>
+      <div class="pricing-wrap">
+        <div class="price-card featured reveal">
+          <div class="price-badge">First 20 Spots at Launch</div>
+          <p class="price-name">Founding Member</p>
+          <div class="price-amount"><sup>$</sup>797</div>
+          <p class="price-note">Available for first 20 purchases at launch</p>
+          <div class="price-divider"></div>
+          <ul class="price-features">
+            <li>Full 12-week program</li>
+            <li>All fitness, nutrition &amp; mindset modules</li>
+            <li>Private first responder community</li>
+            <li>Weekly support from Kaylee</li>
+            <li>Founding member pricing</li>
+            <li>Continue month-to-month after week 12</li>
           </ul>
+          <a href="https://outlook.us7.list-manage.com/subscribe/post?u=2546188df96b7b6c5d5b26305&id=30d824b3aa&f_id=00be31e0f0" class="btn-primary" style="width:100%; text-align:center; display:block; box-sizing:border-box;">Join the Waitlist</a>
         </div>
-      </div>
-      <div class="program-features">
-        <h3>What's included</h3>
-        <div class="features-grid">
-          <div class="feature"><span>&#10003;</span> 12-week structured program</div>
-          <div class="feature"><span>&#10003;</span> Weekly check-ins with Kaylee</div>
-          <div class="feature"><span>&#10003;</span> Private community access</div>
-          <div class="feature"><span>&#10003;</span> Nutrition coaching &amp; meal guides</div>
-          <div class="feature"><span>&#10003;</span> Mindset &amp; recovery resources</div>
-          <div class="feature"><span>&#10003;</span> Workout video library</div>
-          <div class="feature"><span>&#10003;</span> Customized training plan</div>
-          <div class="feature"><span>&#10003;</span> Direct messaging support</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing" class="section pricing">
-    <div class="container">
-      <div class="section-label">Pricing</div>
-      <h2>Invest in yourself.<br /><em>You've earned it.</em></h2>
-      <p class="section-sub">Join the waitlist to be the first to know when spots open — and get early access pricing.</p>
-      <div class="pricing-cards">
-        <div class="price-card">
-          <div class="price-badge">Most Popular</div>
-          <h3>Full Program</h3>
-          <div class="price">Waitlist Price<br /><span>TBA</span></div>
-          <p>Complete 12-week fitness, nutrition, and mindset program with full coaching support.</p>
-          <ul>
-            <li>Everything in the program</li>
-            <li>Weekly coaching calls</li>
-            <li>Personalized adjustments</li>
-            <li>Private community access</li>
-            <li>Lifetime access to materials</li>
+        <div class="price-card reveal">
+          <p class="price-name">Regular Price</p>
+          <div class="price-amount"><sup>$</sup>997</div>
+          <p class="price-note">After founding spots are filled</p>
+          <div class="price-divider"></div>
+          <ul class="price-features">
+            <li>Full 12-week program</li>
+            <li>All fitness, nutrition &amp; mindset modules</li>
+            <li>Private first responder community</li>
+            <li>Weekly support from Kaylee</li>
+            <li>Continue month-to-month after week 12</li>
           </ul>
-          <a href="https://outlook.us7.list-manage.com/subscribe" target="_blank" class="btn btn-primary">Join the Waitlist</a>
+          <a href="https://outlook.us7.list-manage.com/subscribe/post?u=2546188df96b7b6c5d5b26305&id=30d824b3aa&f_id=00be31e0f0" class="btn-primary" style="width:100%; text-align:center; display:block; box-sizing:border-box; background: transparent; border: 1px solid rgba(193,154,107,0.4); color: var(--cream);">Join the Waitlist</a>
         </div>
       </div>
-      <p class="pricing-note">Waitlist members get early access and exclusive pricing before the public launch.</p>
+      <p class="pricing-note">Both options include the full program. Founding member pricing is available for the first 20 spots at launch.</p>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="section faq">
-    <div class="container">
-      <div class="section-label">FAQ</div>
-      <h2>Questions?<br /><em>Answered.</em></h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q">Who is this program for?</button>
-          <div class="faq-a">
-            <p>Beyond the Call is designed specifically for first responders — paramedics, firefighters, police officers, nurses, ER staff, and anyone working in emergency services. If you work shift work in a high-stress role and struggle to maintain your health, this program was built for you.</p>
-          </div>
+  <!-- ─── FAQ ─── -->
+  <section id="faq">
+    <div class="section-inner">
+      <div class="reveal">
+        <h2 class="section-title"><em>FAQ</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="faq-cols">
+        <div>
+          <details>
+            <summary>Do I need a gym membership?</summary>
+            <p>No. All workouts are home-based with minimal equipment. There's no set schedule — you work out when it fits your life — and every session is designed to be short but effective. Built for shift workers, not people with unlimited free time.</p>
+          </details>
+          <details>
+            <summary>I work rotating shifts. Will this actually fit?</summary>
+            <p>Yes — this is exactly what the program is built around. Rotating shifts, overnight calls, and unpredictable hours are factored into every week of programming. You don't need perfect conditions to make progress.</p>
+          </details>
+          <details>
+            <summary>What fitness level do I need?</summary>
+            <p>All levels. Whether you haven't worked out in years or you're already training regularly, the program meets you where you are and builds from there progressively.</p>
+          </details>
+          <details>
+            <summary>Is this only for paramedics?</summary>
+            <p>No — Beyond the Call is for all first responders. Paramedics, EMTs, firefighters, police, dispatchers. If you work in emergency services, this was built for your life.</p>
+          </details>
         </div>
-        <div class="faq-item">
-          <button class="faq-q">Do I need a gym membership?</button>
-          <div class="faq-a">
-            <p>No. The program includes both gym and home workout options. You'll get access to workout plans that can be done with minimal equipment, so you can train no matter where you are or what your schedule looks like.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">How much time do I need each week?</button>
-          <div class="faq-a">
-            <p>Workouts are designed to be efficient — most are 45–60 minutes, 3–5 days per week. The program is built around shift work schedules, so it's flexible and accounts for your on and off days.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">What if I'm a complete beginner?</button>
-          <div class="faq-a">
-            <p>The program meets you where you are. Whether you're brand new to fitness or coming back after a long break, the workouts are structured progressively so you can start at your current level and build from there.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">When does the program launch?</button>
-          <div class="faq-a">
-            <p>The launch date is coming soon. Join the waitlist to be the first to know — waitlist members get early access and exclusive pricing before the public launch.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">How do I join the waitlist?</button>
-          <div class="faq-a">
-            <p>Click any "Join the Waitlist" button on this page and enter your email. You'll receive updates directly from Kaylee about the launch, early access opportunities, and waitlist-exclusive pricing.</p>
-          </div>
+        <div>
+          <details>
+            <summary>How long does the program run?</summary>
+            <p>The program is 12 weeks. After that, you can continue month-to-month to stay in the community, keep the content, and maintain access to Kaylee.</p>
+          </details>
+          <details>
+            <summary>When does the program launch?</summary>
+            <p>Joining the waitlist is the best way to be first to know. Waitlist members get the launch date, the founding price, and first access.</p>
+          </details>
+          <details>
+            <summary>I struggle more with the mental side. Is that covered?</summary>
+            <p>Yes. Mindset is one of the three core pillars — not an afterthought. We cover confidence, imposter syndrome, identity, and the weight of working in emergency services. This is performance and mindset coaching, not therapy or clinical mental health treatment. If you are dealing with serious mental health concerns, please reach out to a qualified professional — this program can run alongside that, not instead of it.</p>
+          </details>
+          <details>
+            <summary>Will I have support throughout the program?</summary>
+            <p>Yes. You'll have access to a private first responder community where Kaylee is present, along with weekly support and the ability to ask questions. It's not one-on-one coaching, but you won't be going through it alone.</p>
+          </details>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA BANNER -->
-  <section class="cta-banner">
-    <div class="container">
-      <h2>Ready to go Beyond the Call?</h2>
-      <p>Join the waitlist today. Be the first to know when spots open.</p>
-      <a href="https://outlook.us7.list-manage.com/subscribe" target="_blank" class="btn btn-light">Join the Waitlist</a>
+  <!-- ─── FINAL CTA ─── -->
+  <section id="cta">
+    <div class="section-inner">
+      <p class="section-label reveal">Ready?</p>
+      <h2 class="section-title reveal">You didn't get into this job<br>to <em>leave it broken.</em></h2>
+      <p class="reveal">Join the waitlist. Lock in your founding price. Be the first to know when we open.</p>
+      <div class="cta-btns reveal">
+        <a href="https://outlook.us7.list-manage.com/subscribe/post?u=2546188df96b7b6c5d5b26305&id=30d824b3aa&f_id=00be31e0f0" class="btn-primary">Join the Waitlist</a>
+        <a href="https://www.instagram.com/kaysawatskyfit" target="_blank" rel="noopener" class="btn-secondary">@kaysawatskyfit on Instagram</a>
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <p class="footer-brand">Beyond the Call</p>
-      <p class="footer-sub">Fitness, Nutrition &amp; Mindset for First Responders</p>
-      <p class="footer-copy">&copy; 2026 Kaylee Sawatsky. All rights reserved.</p>
-    </div>
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <span class="footer-logo">Beyond the Call</span>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#program">Program</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="https://www.instagram.com/kaysawatskyfit" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="mailto:beyondthecallco@gmail.com">Contact</a></li>
+    </ul>
+    <p class="footer-right">&copy; 2026 Kaylee Sawatsky &middot; Beyond the Call</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+    const hamburger = document.getElementById('hamburger');
+    const navbar = document.getElementById('navbar');
+    if (hamburger) {
+      hamburger.addEventListener('click', function() {
+        navbar.classList.toggle('mobile-open');
+      });
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() { navbar.classList.remove('mobile-open'); });
+    });
+
+    window.addEventListener('scroll', function() {
+      navbar.style.background = window.scrollY > 50
+        ? 'rgba(17,24,28,0.98)'
+        : 'rgba(17,24,28,0.92)';
+    });
+  </script>
 </body>
 </html>

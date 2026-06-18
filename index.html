@@ -719,6 +719,129 @@
       flex-wrap: wrap;
     }
 
+    /* ─── CONTACT ─── */
+    #contact { background: var(--black); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-info p {
+      font-size: 0.95rem;
+      color: var(--cream-dk);
+      opacity: 0.8;
+      line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail a {
+      font-size: 0.88rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+    }
+
+    .contact-detail a:hover { opacity: 0.75; }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--dark);
+      border: 1px solid rgba(193, 154, 107, 0.2);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c19a6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .form-group select option { background: var(--dark); }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(241,236,226,0.25); }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: 1.6;
+    }
+
+    .form-submit { margin-top: 0.5rem; }
+
+    .form-success {
+      display: none;
+      padding: 1.25rem 1.5rem;
+      background: rgba(193,154,107,0.08);
+      border: 1px solid rgba(193,154,107,0.3);
+      color: var(--gold);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
     /* ─── FOOTER ─── */
     footer {
       background: var(--dark);
@@ -900,6 +1023,7 @@
     <a href="#program">The Program</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
     <a href="https://outlook.us7.list-manage.com/subscribe/post?u=2546188df96b7b6c5d5b26305&id=30d824b3aa&f_id=00be31e0f0" class="mobile-cta">Join the Waitlist</a>
   </div>
 
@@ -1242,6 +1366,65 @@
     </div>
   </section>
 
+  <!-- ─── CONTACT ─── -->
+  <!-- Form submissions go to Formspree. Sign up at formspree.io, create a form,
+       and replace "YOUR_FORM_ID" in the action URL below with your form ID. -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p class="section-label">Get in Touch</p>
+          <h2 class="section-title" style="font-size:clamp(2rem,3.2vw,3rem); margin-bottom:1.25rem;">Questions?<br><em>Let's talk.</em></h2>
+          <div class="divider"></div>
+          <p>Whether you're curious about the program, not sure if it's right for you, or just want to connect — reach out. Kaylee reads every message.</p>
+          <div class="contact-detail">
+            <a href="mailto:beyondthecallco@gmail.com">beyondthecallco@gmail.com</a>
+            <a href="https://www.instagram.com/kaysawatskyfit" target="_blank" rel="noopener">@kaysawatskyfit on Instagram</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <form class="contact-form" id="contactForm"
+                action="https://formspree.io/f/YOUR_FORM_ID"
+                method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-name">Name</label>
+                <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-email">Email</label>
+                <input type="email" id="cf-email" name="email" placeholder="you@example.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cf-role">Role</label>
+              <select id="cf-role" name="role">
+                <option value="" disabled selected>Select your role</option>
+                <option>Paramedic / EMT</option>
+                <option>Firefighter</option>
+                <option>Police / Law Enforcement</option>
+                <option>Dispatcher</option>
+                <option>Nurse / Healthcare Worker</option>
+                <option>Other First Responder</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" placeholder="What's on your mind?" required></textarea>
+            </div>
+            <div class="form-submit">
+              <button type="submit" class="btn-primary" style="border:none; cursor:pointer; width:100%; text-align:center;">Send Message</button>
+            </div>
+            <div class="form-success" id="formSuccess">
+              Thanks — message received. Kaylee will get back to you soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── FOOTER ─── -->
   <footer>
     <span class="footer-logo">Beyond the Call</span>
@@ -1250,7 +1433,7 @@
       <li><a href="#program">Program</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="https://www.instagram.com/kaysawatskyfit" target="_blank" rel="noopener">Instagram</a></li>
-      <li><a href="mailto:beyondthecallco@gmail.com">Contact</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <p class="footer-right">&copy; 2026 Kaylee Sawatsky &middot; Beyond the Call</p>
   </footer>
@@ -1277,6 +1460,28 @@
     overlay.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', function() { overlay.classList.remove('open'); });
     });
+
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var data = new FormData(contactForm);
+        fetch(contactForm.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        }).then(function(res) {
+          if (res.ok) {
+            contactForm.reset();
+            document.getElementById('formSuccess').style.display = 'block';
+          } else {
+            alert('Something went wrong. Please email us directly at beyondthecallco@gmail.com');
+          }
+        }).catch(function() {
+          alert('Something went wrong. Please email us directly at beyondthecallco@gmail.com');
+        });
+      });
+    }
 
     window.addEventListener('scroll', function() {
       navbar.style.background = window.scrollY > 50

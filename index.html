@@ -778,13 +778,17 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
+      section { padding: 5rem 6vw; }
       #hero { grid-template-columns: 1fr; }
-      .hero-img { min-height: 55vw; }
-      .hero-content { padding: 5rem 6vw; }
+      .hero-img { min-height: 60vw; max-height: 70vw; position: relative; }
+      .hero-img img { position: absolute; }
+      .hero-content { padding: 4rem 6vw 3rem; }
       .about-grid,
       .program-intro,
       .included-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-images { order: -1; }
+      .about-img-sm { height: clamp(140px, 22vw, 220px); }
+      .for-grid { grid-template-columns: repeat(2, 1fr); }
       .weeks-grid { grid-template-columns: repeat(2, 1fr); }
       .photo-strip { grid-template-columns: repeat(3, 1fr); }
       .photo-strip .strip-photo:nth-child(n+4) { display: none; }
@@ -792,18 +796,41 @@
 
     @media (max-width: 768px) {
       :root { --nav-h: 60px; }
+      section { padding: 4rem 5vw; }
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
+
+      .hero-img { min-height: 75vw; max-height: 85vw; }
+      .hero-content { padding: 3rem 5vw 2.5rem; }
+      .hero-sub { max-width: 100%; }
+      .btn-primary { padding: 1rem 1.8rem; width: 100%; text-align: center; box-sizing: border-box; }
+      .btn-secondary { width: 100%; text-align: center; padding: 0.75rem 0; }
+      .hero-btns { flex-direction: column; gap: 0.75rem; }
 
       .for-grid { grid-template-columns: 1fr; }
       .program-pillars { grid-template-columns: 1fr; }
       .weeks-grid { grid-template-columns: 1fr; }
-      .pricing-wrap { grid-template-columns: 1fr; max-width: 400px; }
+      .pricing-wrap { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
       .faq-cols { grid-template-columns: 1fr; }
       .photo-strip { grid-template-columns: repeat(2, 1fr); height: auto; }
-      .strip-photo { height: 180px; }
+      .strip-photo { height: 200px; }
       .photo-strip .strip-photo:nth-child(n+3) { display: none; }
       footer { flex-direction: column; text-align: center; }
+      #cta { padding: 5rem 5vw; }
+      .included-img { height: clamp(280px, 70vw, 400px); }
+      .about-img-main { height: clamp(220px, 60vw, 360px); }
+      .about-img-sm { height: 150px; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 3.5rem 5vw; }
+      .hero-img { min-height: 90vw; max-height: 100vw; }
+      .about-images { grid-template-columns: 1fr; }
+      .about-img-main { grid-column: 1; }
+      .about-img-sm:last-child { display: none; }
+      .week-block { padding: 1.25rem 1rem; }
+      .price-card { padding: 2.25rem 1.5rem; }
+      .for-card { padding: 1.5rem 1.25rem; }
     }
 
     nav.mobile-open .nav-links {
@@ -817,6 +844,7 @@
       border-bottom: 1px solid rgba(193,154,107,0.15);
       gap: 1.25rem;
     }
+
   </style>
 </head>
 <body>
@@ -829,6 +857,7 @@
       <li><a href="#program">The Program</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://outlook.us7.list-manage.com/subscribe/post?u=2546188df96b7b6c5d5b26305&id=30d824b3aa&f_id=00be31e0f0" class="nav-cta" style="display:inline-block;margin-top:0.5rem;">Join the Waitlist</a></li>
     </ul>
     <a class="nav-cta" href="https://outlook.us7.list-manage.com/subscribe/post?u=2546188df96b7b6c5d5b26305&id=30d824b3aa&f_id=00be31e0f0">Join the Waitlist</a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -841,7 +870,7 @@
     <div class="hero-content">
       <p class="hero-eyebrow">Kaylee Sawatsky · Paramedic, Certified Personal Trainer &amp; Nutrition Coach</p>
       <h1 class="hero-title"><em>Beyond<br>the Call</em></h1>
-      <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.2rem,2vw,1.6rem); font-style:italic; color:var(--cream-dk); margin-bottom:1.25rem; letter-spacing:0.02em;">For Those Who Answer It.</p>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.2rem,4vw,1.6rem); font-style:italic; color:var(--cream-dk); margin-bottom:1.25rem; letter-spacing:0.02em;">For Those Who Answer It.</p>
       <p class="hero-sub">A 12-week fitness, nutrition, and mindset program. Built for first responders, by a first responder.</p>
       <div class="hero-btns">
         <a href="https://outlook.us7.list-manage.com/subscribe/post?u=2546188df96b7b6c5d5b26305&id=30d824b3aa&f_id=00be31e0f0" class="btn-primary">Join the Waitlist</a>

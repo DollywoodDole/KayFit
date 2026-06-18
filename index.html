@@ -799,6 +799,8 @@
       section { padding: 4rem 5vw; }
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
+      .hero-eyebrow { display: block; }
+      .hero-eyebrow::before { display: none; }
 
       .hero-img { min-height: 75vw; max-height: 85vw; }
       .hero-content { padding: 3rem 5vw 2.5rem; }
@@ -836,13 +838,35 @@
     nav.mobile-open .nav-links {
       display: flex;
       flex-direction: column;
-      position: absolute;
+      position: fixed;
       top: var(--nav-h);
       left: 0; right: 0;
-      background: rgba(17,24,28,0.97);
-      padding: 1.5rem 5vw 2rem;
-      border-bottom: 1px solid rgba(193,154,107,0.15);
-      gap: 1.25rem;
+      bottom: 0;
+      background: rgba(17,24,28,0.99);
+      padding: 2rem 5vw 3rem;
+      border-top: 1px solid rgba(193,154,107,0.15);
+      gap: 0;
+      z-index: 99;
+      overflow-y: auto;
+    }
+
+    nav.mobile-open .nav-links li a {
+      display: block;
+      padding: 1.1rem 0;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid rgba(193,154,107,0.1);
+      opacity: 1;
+    }
+
+    nav.mobile-open .nav-links li:last-child a {
+      margin-top: 1.5rem;
+      background: var(--gold);
+      color: var(--black);
+      text-align: center;
+      padding: 1rem;
+      border-bottom: none;
+      font-weight: 600;
     }
 
   </style>
